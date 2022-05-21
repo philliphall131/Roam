@@ -35,7 +35,7 @@ if DEBUG:  # Allows split development on local machine
     INSTALLED_APPS += ["corsheaders"]
 
 MIDDLEWARE = [
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    #"whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -47,7 +47,7 @@ MIDDLEWARE = [
 if DEBUG:
     MIDDLEWARE.insert(0, "corsheaders.middleware.CorsMiddleware")
 
-# if not DEBUG: CSRF_TRUSTED_ORIGINS = [''] #insert the production domain (eg https://homebrewd.rphall3.com)
+CSRF_TRUSTED_ORIGINS = ['https://roam.rphall3.com', 'http://localhost:8000']
 
 if DEBUG:
     CORS_ALLOWED_ORIGINS = [
@@ -98,18 +98,6 @@ WSGI_APPLICATION = 'roam_proj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-#lyman's settings
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'roam_db',
-#         'USER': 'postgres',
-#         'PASSWORD': '',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -158,11 +146,11 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = './static'
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "../frontend/build/static"), # your static files folder (where react builds to)
-# ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "../frontend/build/static"), # your static files folder (where react builds to)
+]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
